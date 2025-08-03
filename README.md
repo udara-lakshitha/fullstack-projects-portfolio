@@ -23,7 +23,7 @@ This monorepo is a showcase of **real-world, production-ready applications** I'v
 ## 📧 Contact Me
 
 - 📞 +94 77 561 4574  
-- 📧 udara.dev@gmail.com  
+- 📧 lakshithau95@gmail.com  
 - 💼 [LinkedIn](https://linkedin.com/in/udara-lakshitha)  
 - 💻 [GitHub](https://github.com/udara-lakshitha)
 
