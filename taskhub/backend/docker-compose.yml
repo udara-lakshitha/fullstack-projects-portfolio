@@ -9,9 +9,9 @@ services:
       MYSQL_DATABASE: taskhub_db
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
+      MYSQL_PASSWORD: 1234
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
