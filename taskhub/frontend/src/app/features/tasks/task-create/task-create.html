@@ -1,0 +1,7 @@
+<form [formGroup]="taskForm" (ngSubmit)="createTask()">
+  <label>Title</label>
+  <input formControlName="title" required />
+  <label>Description</label>
+  <textarea formControlName="description"></textarea>
+  <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+</form>
