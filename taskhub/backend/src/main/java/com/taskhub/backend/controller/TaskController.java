@@ -1,7 +1,9 @@
 package com.taskhub.backend.controller;
 
+import com.taskhub.backend.dto.TaskUpdateRequest;
 import com.taskhub.backend.model.Task;
 import com.taskhub.backend.service.TaskService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +36,13 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(
+            @PathVariable Long id,
+            @RequestBody TaskUpdateRequest request) {
+        Task updated = taskService.updateTask(id, request);
+        return ResponseEntity.ok(updated);
     }
 }
