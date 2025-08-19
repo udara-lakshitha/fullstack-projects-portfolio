@@ -1,1 +1,19 @@
-<p>task-dashboard works!</p>
+<div class="dashboard-container">
+  <div class="stats-panel">
+    <div class="card">
+      <h3>Total Tasks</h3>
+      <p>{{ totalTasks }}</p>
+    </div>
+    <div class="card">
+      <h3>Completed</h3>
+      <p>{{ completedTasks }}</p>
+    </div>
+    <div class="card">
+      <h3>Pending</h3>
+      <p>{{ pendingTasks }}</p>
+    </div>
+  </div>
+  <div class="chart-panel">
+    <canvas #taskChart></canvas>
+  </div>
+</div>

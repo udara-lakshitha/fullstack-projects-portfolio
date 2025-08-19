@@ -30,6 +30,7 @@
               }
             ],
             "styles": [
+              "src/styles/_shared.scss",
               "src/styles.scss"
             ]
           },

@@ -1,7 +1,12 @@
-<form [formGroup]="taskForm" (ngSubmit)="createTask()">
-  <label>Title</label>
-  <input formControlName="title" required />
-  <label>Description</label>
-  <textarea formControlName="description"></textarea>
-  <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
-</form>
+<div class="task-create-wrapper">
+  <div class="task-create-card">
+    <h2>Create Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+      <label>Title</label>
+      <input formControlName="title" required />
+      <label>Description</label>
+      <textarea formControlName="description"></textarea>
+      <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+    </form>
+  </div>
+</div>
