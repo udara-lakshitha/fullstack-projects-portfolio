@@ -17,7 +17,7 @@ export default function TripsPage() {
         ))}
       </div>
       <div className="h-64">
-        <MapComponent markers={dummyTrips.map((t) => ({ lat: 6.9271, lng: 79.8612 }))} />
+        <MapComponent markers={dummyTrips.map(() => ({ lat: 6.9271, lng: 79.8612 }))} />
       </div>
     </div>
   );
