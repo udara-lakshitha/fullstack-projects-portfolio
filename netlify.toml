@@ -1,7 +1,7 @@
 [build]
     base = "travel-planner/frontend"
     command = "npm run build"
-    publish = "travel-planner/frontend/dist"
+    publish = "dist"
 
 [[redirects]]
     from = "/*"
