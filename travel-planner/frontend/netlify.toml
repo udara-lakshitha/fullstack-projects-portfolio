@@ -1,0 +1,9 @@
+[build]
+    base = "travel-planner/frontend"
+    command = "npm run build"
+    publish = "travel-planner/frontend/build"
+
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
