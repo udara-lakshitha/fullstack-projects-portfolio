@@ -3,17 +3,7 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for backend" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-        </processorPath>
-        <module name="backend-java" />
-        <module name="backend" />
-      </profile>
-      <profile name="Annotation profile for backend_java" enabled="true">
+      <profile name="Annotation profile for backend-java" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -21,6 +11,9 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="backend_java" />
+        <module name="backend" />
+        <module name="backend-java" />
+        <module name="backend-java (1) (com.udara)" />
       </profile>
     </annotationProcessing>
   </component>
@@ -28,6 +21,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="backend" options="-parameters" />
       <module name="backend-java" options="-parameters" />
+      <module name="backend-java (1) (com.udara)" options="-parameters" />
       <module name="backend_java" options="-parameters" />
     </option>
   </component>
