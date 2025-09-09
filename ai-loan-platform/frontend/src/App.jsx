@@ -1,23 +1,30 @@
+import { useEffect, useState } from 'react';
 import './App.css'
 import LoanForm from './components/LoanForm';
 import LoanList from './components/LoanList';
+import { getLoans } from './services/api';
 import { Toaster } from "react-hot-toast";
 
 function App() {
+  const [loans, setLoans] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getLoans();
+      setLoans(data);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <h1 className="text-3xl font-bold text-center mb-8">AI Loan Platform</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left: Form */}
-        <LoanForm />
-
-        {/* Right: Loan list */}
-        <LoanList />
-      </div>
-
-      {/* Toast container */}
+    <div className="flex gap-8 p-8">
       <Toaster position="top-right" reverseOrder={false} />
+      <div className="w-1/3">
+        <LoanForm setLoans={setLoans} />
+      </div>
+      <div className="w-2/3 overflow-y-auto max-h-[600px]">
+        <LoanList loans={loans} />
+      </div>
     </div>
   );
 }

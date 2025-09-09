@@ -1,12 +1,5 @@
-import { useEffect, useState } from "react";
-import { getLoans } from "../services/api";
-
-export default function LoanList() {
-  const [loans, setLoans] = useState([]);
-
-  useEffect(() => {
-    getLoans().then((res) => setLoans(res.data)).catch(console.error);
-  }, []);
+export default function LoanList({ loans }) {
+  if (!loans) return <p>Loading loans...</p>;
 
   return (
     <div className="max-w-2xl mx-auto mt-8 bg-white shadow-lg rounded-xl p-6">

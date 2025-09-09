@@ -1,11 +1,21 @@
-import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
+const ML_SERVICE_URL = import.meta.env.VITE_ML_SERVICE_URL;
 
-const API_URL = "http://localhost:8080";
-
-export const submitLoan = (loanData) => {
-  return axios.post(`${API_URL}/loans/submit`, loanData);
+export const getLoans = async () => {
+  const res = await fetch(`${API_URL}/loans`);
+  return res.json();
 };
 
-export const getLoans = () => {
-  return axios.get(`${API_URL}/loans`);
+export const submitLoan = async (loanData) => {
+  const res = await fetch(`${API_URL}/loans/submit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(loanData),
+  });
+
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+
+  return res.json();
 };

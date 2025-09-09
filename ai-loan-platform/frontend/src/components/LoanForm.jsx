@@ -1,42 +1,56 @@
 import { useState } from "react";
-import { submitLoan } from "../services/api";
-import toast from "react-hot-toast";
+import { submitLoan, getLoans } from "../services/api.js";
+import { toast } from "react-hot-toast";
 
-export default function LoanForm() {
-  const [form, setForm] = useState({
-    userId: 1,
-    amount: "",
-    revenueMonthly: "",
-    expensesMonthly: "",
-    industry: "",
-    yearsInBusiness: "",
-    creditScore: ""
-  });
-
-  const [result, setResult] = useState(null);
-
+export default function LoanForm({ setLoans }) {
   const labels = {
     amount: "Loan Amount",
     revenueMonthly: "Monthly Revenue",
     expensesMonthly: "Monthly Expenses",
     industry: "Industry",
     yearsInBusiness: "Years in Business",
-    creditScore: "Credit Score"
+    creditScore: "Credit Score",
   };
 
+  const initialFormState = {
+    amount: "",
+    revenueMonthly: "",
+    expensesMonthly: "",
+    industry: "",
+    yearsInBusiness: "",
+    creditScore: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
+  const [result, setResult] = useState(null);
+
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await submitLoan(form);
-      setResult(res.data);
+      const response = await submitLoan(formData);
       toast.success("Loan submitted successfully!");
+
+      // Clear the form
+      setFormData(initialFormState);
+
+      // Update loan list
+      const updatedLoans = await getLoans();
+      setLoans(updatedLoans);
+
+      // Display prediction result
+      setResult({
+        approvalProbability: response.approvalProbability,
+        recommendedProductId: response.recommendedProductId,
+        mlModelVersion: response.mlModelVersion,
+      });
     } catch (err) {
-      console.error(err);
-      toast.error("Failed to submit loan.");
+      console.error("Error submitting loan:", err);
+      toast.error("Failed to submit loan!");
     }
   };
 
@@ -50,10 +64,10 @@ export default function LoanForm() {
             <input
               type="text"
               name={key}
-              value={form[key]}
+              value={formData[key]}
               onChange={handleChange}
               className="border rounded-md p-2 focus:ring focus:ring-blue-300"
-              required
+              required={key !== "creditScore"} // optional field
             />
           </div>
         ))}
@@ -68,9 +82,15 @@ export default function LoanForm() {
       {result && (
         <div className="mt-6 bg-gray-100 p-4 rounded-lg">
           <h3 className="text-lg font-semibold mb-2">Prediction Result:</h3>
-          <p><strong>Approval Probability:</strong> {result.approvalProbability}</p>
-          <p><strong>Recommended Product ID:</strong> {result.recommendedProductId}</p>
-          <p><strong>Model Version:</strong> {result.mlModelVersion}</p>
+          <p>
+            <strong>Approval Probability:</strong> {result.approvalProbability}
+          </p>
+          <p>
+            <strong>Recommended Product ID:</strong> {result.recommendedProductId}
+          </p>
+          <p>
+            <strong>Model Version:</strong> {result.mlModelVersion}
+          </p>
         </div>
       )}
     </div>
