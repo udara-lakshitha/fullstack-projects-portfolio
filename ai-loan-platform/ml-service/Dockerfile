@@ -18,10 +18,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port for service
-EXPOSE 10000
+EXPOSE 8000
 
 # Optional: environment variables
-ENV PORT=10000
+ENV PORT=8000
 ENV ML_MODEL_PATH=model.pkl
 
 # Run FastAPI app
