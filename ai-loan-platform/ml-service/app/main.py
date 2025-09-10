@@ -3,15 +3,14 @@ from pydantic import BaseModel;
 from typing import Optional
 import joblib
 import os
-from dotenv import load_dotenv
 
 app = FastAPI(title = "ML Loan Service")
 
 load_dotenv()
 
-MODEL_PATH = os.getenv("ML_MODEL_PATH", "model.pkl")
-MODEL_VERSION = os.getenv("ML_MODEL_VERSION", "heuristic-0.1")
-PORT = int(os.getenv("PORT", 8000))
+MODEL_PATH = os.environ.get("ML_MODEL_PATH", "model.pkl")
+MODEL_VERSION = os.environ.get("ML_MODEL_VERSION", "heuristic-0.1")
+PORT = int(os.environ.get("PORT", 8000))
 
 class Features(BaseModel):
     amount: float
