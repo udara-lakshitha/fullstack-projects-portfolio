@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 10000
 
 # Run with uvicorn (FastAPI/Flask style)
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]
